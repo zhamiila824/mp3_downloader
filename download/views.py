@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from .forms import RequestForm
-from django.http import HttpResponse
 from .models import Request
 
 
@@ -12,4 +11,5 @@ def index(request):
             email = form.cleaned_data.get('email')
             url = form.cleaned_data.get('url')
             Request.objects.create(email=email, url=url)
+            return render(request, 'index.html', {'form': form})
     return render(request, 'index.html', {'form': form})
