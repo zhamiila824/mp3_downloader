@@ -2,13 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Downloader</title>
+    <title>Converter</title>
 </head>
 <body>
 <form action="" method="post">
-    {%  csrf_token %}
+    {% csrf_token %}
     {{ form }}
-    <input type="submit" value="Download">
-</form>
+    <input type="submit" value="Download" onclick="return message()">
+  </form>
 </body>
+<script>
+    function message() {
+        alert("Download link will be sent to your email");
+        return true;
+    }
+</script>
 </html>
