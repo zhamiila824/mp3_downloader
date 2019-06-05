@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import RequestForm
 from .models import Request
 from .tasks import download
+from django.contrib import messages
 
 
 def index_view(request):
@@ -12,8 +13,8 @@ def index_view(request):
             email = form.cleaned_data.get('email')
             url = form.cleaned_data.get('url')
             host = request.get_host()
-            obj = Request(email=email, url=url)
-            obj.save()
+            Request.objects.create(email=email, url=url)
             download.delay(url, email, host)
+            messages.success(request, 'Download link will be sent to your email')
             return render(request, 'index.html', {'form': form})
     return render(request, 'index.html', {'form': form})

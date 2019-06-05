@@ -8,13 +8,17 @@
 <form action="" method="post">
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="Download" onclick="return message()">
+    <input type="submit" value="Download" >
   </form>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
 </body>
-<script>
-    function message() {
-        alert("Download link will be sent to your email");
-        return true;
-    }
-</script>
 </html>
