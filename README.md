@@ -19,8 +19,6 @@ Before running server:
 ```
 2) make migrations:
 ```
-$ python manage.py makemigrations
-$ python manage.py migrate
 $ python manage.py sqlmigrate download 0001
 ```
 3) create superuser(to see admin page):
