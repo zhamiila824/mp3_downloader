@@ -1,8 +1,9 @@
+from django.contrib import messages
 from django.shortcuts import render
+
 from .forms import RequestForm
 from .models import Request
 from .tasks import download
-from django.contrib import messages
 
 
 def index_view(request):
